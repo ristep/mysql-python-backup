@@ -20,6 +20,10 @@ backupDir = ./backup
 - dbList  - is list of data-bases
 - backupDir - folder for backup files
 
+### Using
+```sh
+python3 backup.py
+```
 ### Requirements
 
 - python
