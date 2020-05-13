@@ -14,7 +14,7 @@ def dbBackup(dbName, backupdir):
 
     dumpFile = pipes.quote(backupdir) + "/" + dbName + ".sql"
     DumpCmd = "mysqldump " + "--defaults-extra-file=./backup.cnf " + dbName + " > " + dumpFile
-    # print(DumpCmd)
+
     if os.system(DumpCmd) == 0:
         os.system("gzip " + dumpFile)
     else:
