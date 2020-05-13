@@ -1,0 +1,1 @@
+selUsers = 'SELECT * FROM `users` limit 20'
