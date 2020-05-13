@@ -4,7 +4,8 @@ A simple script for backup MySql databases
 Everything is in one file "backup.py"
 "backup.cnf" is a two-section config file
 
-	[client]
+```sh
+	[client] 
 	user = pmauser
 	password = Leprakon90877&&**
 	host = localhost
@@ -12,4 +13,4 @@ Everything is in one file "backup.py"
 	[config]
 	dbList = foodlog,phpmyadmin
 	backupDir = ./backup
-
+```
