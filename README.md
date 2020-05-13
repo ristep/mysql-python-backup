@@ -1,7 +1,5 @@
 #  mysql-python-backup
 
-#  mysql-python-backup
-
 A simple script for backup MySql databases
 
 - backup.py - main script 
