@@ -3,7 +3,6 @@ user = pmauser
 password = Leprakon90877&&**
 host = localhost
 
-[dblist]
-list = foodlog,foodb,phpmyadmin
-
-[backupPath]
+[config]
+dbList = foodlog,phpmyadmin
+backupDir = ./backup
