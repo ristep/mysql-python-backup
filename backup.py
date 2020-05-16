@@ -6,25 +6,32 @@ import pipes
 import configparser
 
 
-def dbBackup(dbName, backupdir):
+def dbBackup(dbName, backupdir, conff):
     try:
         os.stat(BackupDir)
     except:
         os.makedirs(BackupDir)
 
     dumpFile = pipes.quote(backupdir) + "/" + dbName + ".sql"
-    DumpCmd = "mysqldump " + "--defaults-extra-file=./backup.cnf " + dbName + " > " + dumpFile
+    DumpCmd = "mysqldump " + "--defaults-extra-file="+ conff + ' ' + dbName + " > " + dumpFile
 
     if os.system(DumpCmd) == 0:
         os.system("gzip " + dumpFile)
     else:
         os.unlink(dumpFile)
 
+scriptFile = os.path.splitext(__file__)[0]
+scriptDir = os.path.dirname(__file__)
+confFile = scriptFile + '.cnf'
 
 Config = configparser.ConfigParser()
-Config.read('backup.cnf')
+Config.read(confFile)
 dbList = Config.get('config','dbList').split(',')
-BackupDir = os.path.join( os.path.abspath(Config.get('config','backupDir')), time.strftime('%Y%m%d-%H%M%S'))
 
-for dbName in dbList:
-    dbBackup(dbName, BackupDir)
+BackupDir = Config.get('config','backupDir')
+if(BackupDir[0]=='.'): BackupDir = os.path.join(scriptDir, BackupDir)
+BackupDir = os.path.join( BackupDir, time.strftime('%Y%m%d-%H%M%S'))
+print(BackupDir)    
+
+for dbn in dbList:
+    dbBackup(dbn, BackupDir, confFile)
