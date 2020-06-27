@@ -16,9 +16,9 @@ def dbBackup(dbName, backupdir, conff):
     DumpCmd = "mysqldump " + "--defaults-extra-file="+ conff + ' ' + dbName + " > " + dumpFile
 
     if os.system(DumpCmd) == 0:
-        os.system("gzip " + dumpFile)
+      os.system("gzip " + dumpFile)
     else:
-        os.unlink(dumpFile)
+      os.unlink(dumpFile)
 
 scriptFile = os.path.splitext(__file__)[0]
 scriptDir = os.path.dirname(__file__)
